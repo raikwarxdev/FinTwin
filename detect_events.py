@@ -156,7 +156,7 @@ def detect_retirement_approaching(c, df_customer=None):
     flagged = df_customer[df_customer["description"] == "RETIREMENT SAVINGS"]
     if len(flagged) > 0:
         age = c.get("age", 55)
-        if age < 40:
+        if age < 50:
             return False, 0
         confidence = round(min(0.95, 0.70 + max(0, age - 52) * 0.03), 2)
         return True, confidence
