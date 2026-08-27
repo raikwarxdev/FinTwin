@@ -97,7 +97,7 @@ Sample retrieval result for query *"personal loan eligibility for a 22 year old"
 
 ```bash
 # Clone and set up
-git clone https://github.com/letskeepitsecretd/FinTwin.git
+git clone https://github.com/raikwarxdev/FinTwin.git
 cd FinTwin
 pip install -r requirements.txt
 
@@ -144,4 +144,4 @@ python3 -u server.py
 
 ---
 
-*Built by Dev Kumar Raikwar · github.com/letskeepitsecretd/FinTwin*
+*Built by Dev Kumar Raikwar · github.com/raikwarxdev/FinTwin*

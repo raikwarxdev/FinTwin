@@ -20,7 +20,7 @@ for name, key in keys.items():
     client = OpenAI(api_key=key, base_url="https://api.groq.com/openai/v1")
     try:
         r = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
             messages=[{"role": "user", "content": "Say OK"}],
             max_tokens=5,
         )

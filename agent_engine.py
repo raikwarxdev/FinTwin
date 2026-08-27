@@ -75,7 +75,7 @@ def rotate_key(reason: str = "quota"):
     print(f"[KeyRotation] Rotated to key index {_current_key_index[0]} (reason: {reason}). "
           f"{len(_GROQ_KEYS)} keys available.")
 
-MODEL_NAME = os.getenv("FINTWIN_MODEL", "llama-3.3-70b-versatile")
+MODEL_NAME = os.getenv("FINTWIN_MODEL", "openai/gpt-oss-120b")
 
 DATA_DIR = Path("data")
 EVENTS_FILE = DATA_DIR / "detected_events.json"
