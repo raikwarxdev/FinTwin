@@ -214,8 +214,6 @@ def detect_customer_events(df_customer, c):
             "detected_at": datetime.now().isoformat(),
         })
 
-    return detected
-
     # Helper to group by month
     salary_series = df_customer[df_customer["category"] == "salary"].groupby("month")["amount"].sum()
     emi_series    = df_customer[df_customer["category"] == "emi"].groupby("month")["amount"].sum()
