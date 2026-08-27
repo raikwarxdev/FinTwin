@@ -343,7 +343,7 @@ def run_investigate_decide(event: dict, customer: dict, trace: list) -> dict:
                     tools=TOOLS_SCHEMA,
                     tool_choice="auto",
                     temperature=0.0,
-                    max_tokens=2048,
+                    max_tokens=4096,
                 )
                 break  # success
             except Exception as e:
@@ -438,7 +438,7 @@ Respond ONLY with JSON, no markdown fences:
                 model=MODEL_NAME,
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.7,
-                max_tokens=1024,
+                max_tokens=4096,
             )
             break  # success
         except Exception as e:
@@ -499,7 +499,7 @@ def run_validate(draft: dict, trace: list) -> dict:
                 model=MODEL_NAME,
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
-                max_tokens=1024,
+                max_tokens=4096,
             )
             break  # success
         except Exception as e:
