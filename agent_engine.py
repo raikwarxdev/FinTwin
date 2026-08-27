@@ -452,8 +452,17 @@ Respond ONLY with JSON, no markdown fences:
     text = clean_llm_json(text)
     try:
         draft = json.loads(text)
+        if not isinstance(draft, dict):
+            draft = {"channel": "sms", "subject": "", "body": str(draft)[:400]}
     except json.JSONDecodeError:
         draft = {"channel": "sms", "subject": "", "body": text[:400]}
+
+    # Normalize keys to ensure 'body' is populated
+    if "body" not in draft or not draft.get("body"):
+        for key in ["message", "text", "email_body", "content", "outreach"]:
+            if key in draft and draft[key]:
+                draft["body"] = draft[key]
+                break
 
     trace.append({"step": "draft", "result": draft})
     return draft
@@ -504,8 +513,17 @@ def run_validate(draft: dict, trace: list) -> dict:
     text = clean_llm_json(text)
     try:
         validation = json.loads(text)
+        if not isinstance(validation, dict):
+            validation = {"compliant": True, "issues": [], "revised_body": draft.get("body", "")}
     except json.JSONDecodeError:
         validation = {"compliant": True, "issues": [], "revised_body": draft.get("body", "")}
+
+    # Normalize validation keys
+    if not validation.get("revised_body"):
+        for key in ["revised_message", "revised_text", "body", "message", "text"]:
+            if key in validation and validation[key]:
+                validation["revised_body"] = validation[key]
+                break
 
     trace.append({"step": "validate", "result": validation})
 
